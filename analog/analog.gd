@@ -1,6 +1,6 @@
 extends Node2D
 
-const INACTIVE_IDX = -1;
+const INACTIVE_IDX = 0;
 export var AnalogTapToShow = false setget set_tap_to_show
 export var AnalogTapToShowContainer = ""
 export var mapAnalogToDpad = true
@@ -32,6 +32,8 @@ func _input(event):
 	var incomingPointer = extractPointerIdx(event)
 	if incomingPointer == INACTIVE_IDX:
 		return
+	else:
+		incomingPointer = event.index
 	
 	if need2ChangeActivePointer(event):
 		if (currentPointerIDX != incomingPointer) and event.is_pressed():
